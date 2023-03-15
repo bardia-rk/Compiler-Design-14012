@@ -11,12 +11,22 @@ def get_numbers(inp):
     foundNums = []
     parts = inp.split(" ")
     number = ""
-    for i in range(0, len(parts)):
-        for j in parts[i]:
-            if j in nums:
-                number += inp[j]
-            elif j in letters and number == "":
-                number = ""
+    for i in range(0,len(parts)):
+        for j in range(0,len(parts[i])):
+            if parts[i][j] in nums and j != len(parts[i])-1:
+                number += parts[i][j]
+            elif parts[i][j] in nums and j == len(parts[i])-1:
+                number += parts[i][j]
+                foundNums.append(number)
+                number=""
+            elif parts[i][j] in letters:
+                break
+            else:
+                foundNums.append(number)
+                number=""
+    
+    return foundNums
+                
         
 
     return foundNums
@@ -68,7 +78,7 @@ def get_keywords(inp):
             found_keywords.append(words[i])
     return found_keywords
 
-print()
+print(get_numbers("123 123"))
 
 # def get_next_token():
 #     inputs = open("input.txt").readlines()
