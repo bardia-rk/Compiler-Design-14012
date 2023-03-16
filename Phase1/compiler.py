@@ -6,34 +6,30 @@ letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
           "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V",
           "W", "X", "Y", "Z"]
 
-
 def get_numbers(inp):
     foundNums = []
-    parts = inp.split(" ")
-    number = ""
-    for i in range(0,len(parts)):
-        for j in range(0,len(parts[i])):
-            if parts[i][j] in nums and j != len(parts[i])-1:
-                number += parts[i][j]
-            elif parts[i][j] in nums and j == len(parts[i])-1:
-                number += parts[i][j]
-                foundNums.append(number)
-                number=""
-            elif parts[i][j] in letters:
-                break
-            else:
-                foundNums.append(number)
-                number=""
-    
-    return foundNums
-                
+    i=0
+    start = 0
+    flag = False
+    while i < len(inp):
         
-
+        if inp[i] in nums and not flag:
+            start = i
+            flag = True
+        elif inp[i] in letters and flag:
+            flag = False
+        
+        if not inp[i] in nums and flag:
+            foundNums.append(inp[start:i])
+        
+        i+=1
+    
     return foundNums
 
 def get_symbols(inp):
     foundSymbols = []
-    for i in range(0,len(inp)):
+    i=0
+    while (i < len(inp)):
         if inp[i] == ":":
             foundSymbols.append(":")
         elif inp[i] == ";":
@@ -67,6 +63,7 @@ def get_symbols(inp):
                     i += 1
                 else:
                     foundSymbols.append("=")
+        i+=1
             
     return foundSymbols
 
@@ -78,7 +75,7 @@ def get_keywords(inp):
             found_keywords.append(words[i])
     return found_keywords
 
-print(get_numbers("123 123"))
+print(get_numbers("if(b==1123){"))
 
 # def get_next_token():
 #     inputs = open("input.txt").readlines()
