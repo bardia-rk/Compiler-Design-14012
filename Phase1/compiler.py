@@ -65,7 +65,7 @@ def get_numbers(inp):
         if inp[i] in nums and not flag:
             start = i
             flag = True
-        elif inp[i] in letters and flag:
+        elif (inp[i] in letters or inp[i] == "!") and flag:
             flag = False
         elif not (inp[i] in nums or inp[i] in letters) and flag:
             foundNums.append(inp[start:i])
@@ -115,17 +115,9 @@ def get_symbols(inp):
 
     return foundSymbols
 
-
-# def get_keywords(inp):
-    # found_keywords = []
-    # words = inp.split(" ")
-    # for i in range(0, len(words)):
-    #     if words[i] in keywords:
-    #         found_keywords.append(words[i])
-    # return found_keywords
-
-
-print(get_numbers("if123(12b=321=1123){"))
+a= "if123(12b=321=1123!){"
+print(get_numbers(a))
+print(get_symbols(a))
 
 # def get_next_token():
 #     inputs = open("input.txt").readlines()
