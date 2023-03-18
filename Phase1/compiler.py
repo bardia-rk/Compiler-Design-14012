@@ -56,14 +56,12 @@ letters = [
     "Z",
 ]
 
-
 def get_numbers(inp):
     foundNums = []
     i = 0
     start = 0
     flag = False
     while i < len(inp):
-
         if inp[i] in nums and not flag:
             start = i
             flag = True
@@ -71,11 +69,10 @@ def get_numbers(inp):
             flag = False
         elif not (inp[i] in nums or inp[i] in letters) and flag:
             foundNums.append(inp[start:i])
-
+            flag = False
         i += 1
 
     return foundNums
-
 
 def get_symbols(inp):
     foundSymbols = []
@@ -128,7 +125,7 @@ def get_symbols(inp):
     # return found_keywords
 
 
-print(get_numbers("if(b==1123){"))
+print(get_numbers("if123(12b=321=1123){"))
 
 # def get_next_token():
 #     inputs = open("input.txt").readlines()
